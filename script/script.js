@@ -5,7 +5,7 @@ const todoControl = document.querySelector('.todo-control'),
     todoList = document.querySelector('.todo-list'),
     todoCompleted = document.querySelector('.todo-completed');
 
-const todoData = [];
+const todoData = [JSON.parse(todoData)];
 
 const render = function() {
 
@@ -64,7 +64,7 @@ todoControl.addEventListener('submit', function(event){
 
         todoData.push(newToDo);
 
-        let json = JSON.stringify(newToDo);
+        let json = JSON.stringify(todoData);
 
         localStorage.setItem('memory', json);
         // showText();
