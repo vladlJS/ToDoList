@@ -5,7 +5,7 @@ const todoControl = document.querySelector('.todo-control'),
     todoList = document.querySelector('.todo-list'),
     todoCompleted = document.querySelector('.todo-completed');
 
-const todoData = [JSON.parse(todoData)];
+const todoData = [];
 
 const render = function() {
 
@@ -42,7 +42,7 @@ const render = function() {
         //     render();
         // });
         
-        // li.innerHTML = localStorage.getItem('memory');
+        li.innerHTML = localStorage.getItem(JSON.parse(todoData));
 
         // newToDo2 = JSON.parse(newToDo);
     });    
