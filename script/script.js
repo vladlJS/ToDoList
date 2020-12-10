@@ -7,12 +7,15 @@ const todoControl = document.querySelector('.todo-control'),
 
 const todoData = [];
 
+
+    todoData = JSON.parse(localStorage.getItem('memory'));
+
 const render = function() {
 
     todoList.textContent = '';
     todoCompleted.textContent = '';
 
-    todoData.forEach(function(item){
+    todoData.forEach(function(item, i){
         const li = document.createElement('li');
         li.classList.add('todo-item');
 
@@ -28,7 +31,6 @@ const render = function() {
             todoList.append(li);
         }
 
-
         const btnTodoComplete = li.querySelector('.todo-complete');
 
         btnTodoComplete.addEventListener('click', function(){
@@ -36,22 +38,16 @@ const render = function() {
             render();
         });
 
-        // const btnTodoRemove = li.querySelector('.todo-remove');
-        // btnTodoRemove.addEventListener('click', function(){
-        //     item.remove();
-        //     render();
-        // });
+        const btnTodoRemove = li.querySelector('.todo-remove');
+        btnTodoRemove.addEventListener('click', function(){
+            todoData.splice(i, 1);
+            localStorage.setItem('memory', JSON.stringify(todoData));
+            render();
+        });
         
-        li.innerHTML = localStorage.getItem(JSON.parse(todoData));
-
-        // newToDo2 = JSON.parse(newToDo);
-    });    
-    
+    }); 
+       
 };
-
-// const showText = function(){
-//     li.textContent = localStorage.myText;
-// }
 
 todoControl.addEventListener('submit', function(event){
     event.preventDefault();
@@ -63,14 +59,8 @@ todoControl.addEventListener('submit', function(event){
         }
 
         todoData.push(newToDo);
-
-        let json = JSON.stringify(todoData);
-
-        localStorage.setItem('memory', json);
-        // showText();
-
+        localStorage.setItem('memory', JSON.stringify(todoData));
         headerInput.value = '';
-
         render();
     };
 });
