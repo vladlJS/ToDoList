@@ -8,7 +8,7 @@ const todoControl = document.querySelector('.todo-control'),
 const todoData = [];
 
 
-    todoData = JSON.parse(localStorage.getItem('memory'));
+    // todoData = JSON.parse(localStorage.getItem('memory'));
 
 const render = function() {
 
@@ -35,6 +35,7 @@ const render = function() {
 
         btnTodoComplete.addEventListener('click', function(){
             item.completed = !item.completed;
+            localStorage.setItem('memory', JSON.stringify(todoData));
             render();
         });
 
